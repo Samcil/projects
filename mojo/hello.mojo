@@ -1,2 +1,2 @@
-fn():
+fn main():
     print("Hello, world!")
