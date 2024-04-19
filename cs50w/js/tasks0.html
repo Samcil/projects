@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Tasks
+        </title>
+    </head>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // By default, we set the submit button to disabled
+            document.querySelector('#submit').disabled = true;
+            document.querySelector('form').onsubmit = () => {
+
+                // this is to make sure when user starts typing but cleans out input to empty string, the submit button is still disabled
+                if (document.querySelector('#task').value.length > 0) {
+                    document.querySelector('#submit').disabled = false;
+                }
+                else {
+                    document.querySelector('#submit').disabled = true;
+                }
+                // storing value from input field with id task that user typed into a variable
+                const task = document.querySelector('#task').value;
+
+                // We now create a new element in which to attach this value
+                const li = document.createElement('li');
+                li.innerHTML = task;
+
+                // add the li element to the ul tag
+                document.querySelector('#tasks').append(li);
+
+                // after the user has typed in their tasks, the value still persists in the form ui. the code below clears it
+                document.querySelector('#task').value = '';
+                // stop form from submitting request to server. we want to do everything in the client side
+                return false;
+            }
+        });
+    </script>
+    <body>
+        <h1>Tasks</h1>
+        <ul id="tasks">
+            <!-- Within this unordered list, I want user to submit tasks they would like to do using forms -->
+            <form action="">
+                <input type="text" id="task" placeholder="New Task">
+                <!-- we want to prevent users from submitting the form when they have not typed in any text.  -->
+                <input id="submit" type="submit">
+            </form>
+        </ul>
+    </body>
+</html>

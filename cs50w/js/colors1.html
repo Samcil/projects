@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Colors
+        </title>
+        <script>
+            // We cannot use this and arrow functions together as this property refers to the function just defined and not the element just triggered
+            document.addEventListener('DOMContentLoaded', () => {
+                // for the select tag it has the onchange property which we can access
+                document.querySelector('select').onchange = function() {
+                    // We also have access to the keyword called this which allows us to refer to the element that led us to this point
+                    // here the event is the element being selected from the dropdown
+                    document.querySelector('#hello').style.color = this.value;
+                }
+            });
+        </script>
+    </head>
+    <body>
+        <h1 id="hello">
+            Hello!
+        </h1>
+        <!-- Drop down menu we can select from -->
+        <select>
+            <option value="red">Red</option>
+            <option value="green">Green</option>
+            <option value="blue">Blue</option>
+        </select>
+    </body>
+</html>

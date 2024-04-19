@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Currency Exchange</title>
+        <script>
+            //const express = require('express');
+            //const cors = require('cors'); // Install this package using npm/yarn
+
+            //const app = express();
+
+            // Enable CORS for your specific origin
+            //app.use(cors({
+            //origin: 'http://localhost:5500',
+            //methods: ['GET', 'OPTIONS'],
+            //allowedHeaders: ['Authorization'],
+            //}));
+
+            // Your other routes and middleware go here
+
+            // Start your server
+            //app.listen(3000, () => {
+            //console.log('Server listening on port 3000');
+            //});
+
+            // Upon all the data formats/types in JS, the most useful is objects which are the equivalent of python dictionaries
+            // They allow us to store data that is both machine and human readable format and allows us to pass information between applications
+            // Hence the term API's. 
+
+            // So far all the js scripts we have written have been running locally only and inside the web browser and not communicating with 
+            // some external server. But now we want to explore AJAX i.e asynchronous JS.
+            // The main idea is that even after a page has loaded i.e. DOMContentLoaded = true, we can still make additional requests to ask
+            // for additional information either from our own web servers or a third party web server if we want additional info on our page.
+            //const apiKey = 'oZlP19KAx526tfSnxLQhLhpWapxPpTPG';
+            const apiUrl = 'https://open.er-api.com/v6/latest/GBP';
+            //const requestOptions = {
+            //    method: 'GET',
+            //    headers: {
+            //      'Authorization': `Bearer ${apiKey}`,
+            //    },
+            //  };
+//
+            document.addEventListener('DOMContentLoaded', () => {
+                // This is the function that most browsers now support that allows us to do asynchronous requests
+                //fetch(apiUrl, requestOptions)
+                fetch(apiUrl)
+                // fetch returns to us an object known as a PROMISE representing the idea that we will receive an object but it may not be now
+                // when the response comes back, we want to convert the reponse into json
+                .then(response => response.json())
+                // then when we receive the jsonified data, we want to log it in the console to investigate the data we received 
+                //.then(data => console.log(data));
+                // we are fetching the rates
+                .then(data => {
+                    const rate = data.rates.EUR;
+                    // Placing the rate in the body of the html
+                    document.querySelector('body').innerHTML = `1 GBP is  equal to ${rate.toFixed(3)} EUR`;
+                });
+            })
+        </script>
+    </head>
+    <body>
+        
+    </body>
+
+</html>

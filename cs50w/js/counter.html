@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>
+            Hahahaha
+        </title>
+        <script>
+            // With the intro of JS we can do what we call event driven programming
+            // i.e. we run certain operations only when the user triggers an event
+            // to do this, we wrap our operations in functions and call them when that event is triggered
+            // First way to do this is by putting this function as attributes within html tags
+            // 
+            let counter = 0;
+
+            function count() {
+                counter++;
+                alert(counter);
+            }
+        </script>
+    </head>
+    <body>
+        <h1> Hello!!!</h1>
+        <!-- We have included an onclick handler which will always run the hello function anytime the button is clicked -->
+        <button onclick="count()">Count</button>
+    </body>
+</html>

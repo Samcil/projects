@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Colors
+        </title>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                // queryselectorAll returns a special array called nodelist which allows us to use the mapping function called forEach
+                document.querySelectorAll('button').forEach((button) => {
+                    // so for every button, when it is clicked, we want to then apply another function
+                    button.onclick = () => {
+                        // when the button is clicked, we want to access the color style property of the h1 tag and assign it button that is clicked color
+                        document.querySelector('#hello').style.color = button.dataset.color;
+                    }
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <h1 id="hello">
+            Hello!
+        </h1>
+        <!-- When there are multiple items that we want to access their specific attribute we can use "data-attribute_we_want_from_tag" to use in our JS -->
+        <button data-color="red">Red</button>
+        <button data-color="green">Green</button>
+        <button data-color="blue">Blue</button>
+    </body>
+</html>

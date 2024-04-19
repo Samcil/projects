@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Currency Exchange</title>
+        <script>
+            
+            const apiUrl = 'https://open.er-api.com/v6/latest/GBP';
+            
+            document.addEventListener('DOMContentLoaded', () => {
+                document.querySelector('form').onsubmit = () => {
+
+                    
+                    fetch(apiUrl)
+                    .then(response => response.json())
+                    .then(data => {
+                        // accessing value from form input field and changing string to uppercase
+                        const currency = document.querySelector('#currency').value.toUpperCase();
+                        // We have to use the square brackets to index into the object rather than the dot property since we are using a variable
+                        const rate = data.rates[currency];
+                        if (rate !== undefined)
+                        {
+                            // Placing the rate in the body of the html
+                            document.querySelector('#result').innerHTML = `1 GBP is  equal to ${rate.toFixed(3)} ${currency}`;
+                        }
+                        else{
+                            document.querySelector('#result').innerHTML = "Invalid Currency";
+                        }
+                    })
+                    .catch(error => console.log(error));
+                        
+                        // Do not submit form
+                        return false;
+                }
+            });
+        </script>
+    </head>
+    <body>
+        <!-- Get input from user using a form and here we want the submit button to show as convert -->
+        <form action="">
+            <input type="text" id="currency" placeholder="Currency">
+            <input type="submit" value="Convert">
+        </form>
+        <!-- Store results in a div after doing conversion-->
+        <div id="result"></div>
+    </body>
+
+</html>

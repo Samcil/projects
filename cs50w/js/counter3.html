@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>
+            Hahahaha
+        </title>
+        <script>
+            // With the intro of JS we can do what we call event driven programming
+            // i.e. we run certain operations only when the user triggers an event
+            // to do this, we wrap our operations in functions and call them when that event is triggered
+            // First way to do this is by putting this function as attributes within html tags
+            // 
+            let counter = 0;
+            function count() {
+                counter++;
+                document.querySelector('h1').innerHTML = counter;
+                
+                if (counter % 10 === 0)
+                {
+                    // This is JS' way of writing formatted strings
+                    alert(`Count is now ${counter}`);
+                }
+            }
+            
+            // This would fail because, the script will be read from top to bottom and since the button element
+            //is only created after calling the function, nothing will happen when the button is clicked.
+            // TO SOLVE THIS, WE USE ANOTHER PROPERTY IN THE DOM which runs the function only when all html is loaded
+
+            document.addEventListener('DOMContentLoaded', function (){
+                // Eventlistener takes in two inputs, the event to listen for and the function to apply when event is triggered
+                document.querySelector('button').onclick = count;
+            });
+
+        </script>
+    </head>
+    <body>
+        <h1>0</h1>
+        <button >Count</button>
+    </body>
+</html>
